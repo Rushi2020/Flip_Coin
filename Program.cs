@@ -1,4 +1,4 @@
-﻿// Loop through multiple times flipping a coin and show count
+﻿// Flip coin until either of them won by 21 and show how much it won
 
 
 using System;
@@ -25,11 +25,9 @@ namespace flipCoin
             //initilization and declaration
             int headCount = 0;
             int tailCount = 0;
-            int i = 0;
 
 
-
-            while (i <= 21)
+            while (headCount < 21 && tailCount < 21)
             {
 
                 Random random = new Random();
@@ -45,11 +43,27 @@ namespace flipCoin
 
 
                 }
-                i++;
+
             }
             Console.WriteLine($"Head {headCount}");
 
             Console.WriteLine($"Tail {tailCount}");
+
+
+            if (headCount >= 21)
+            {
+                Console.WriteLine($"head won by {headCount - tailCount}");
+            }
+            else if (tailCount >= 21)
+            {
+                Console.WriteLine($"tail won by {tailCount - headCount}");
+
+            }
+            else if (headCount == tailCount)
+            {
+                Console.WriteLine("tie");
+
+            }
 
 
             return 0;
