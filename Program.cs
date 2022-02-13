@@ -1,4 +1,4 @@
-﻿// Flip coin until either of them won by 21 and show how much it won
+﻿//  If its tie then continue until difference become 2
 
 
 using System;
@@ -11,12 +11,23 @@ namespace flipCoin
         {
             Console.WriteLine("flip coin simulator");
 
-            FlipCoin();
+
+            int difference1 = FlipCoin(21);
+            int diff = 0;
+
+
+            if (difference1 == 0)
+            {
+                TieCondition(2);
+            }
+
+
+
 
         }
 
 
-        public static int FlipCoin()
+        public static int FlipCoin(int MARGIN)
         {
             //constant
             const int HEAD = 0;
@@ -25,9 +36,10 @@ namespace flipCoin
             //initilization and declaration
             int headCount = 0;
             int tailCount = 0;
+            int difference = 0;
 
 
-            while (headCount < 21 && tailCount < 21)
+            while (headCount < MARGIN && tailCount < MARGIN)
             {
 
                 Random random = new Random();
@@ -50,13 +62,15 @@ namespace flipCoin
             Console.WriteLine($"Tail {tailCount}");
 
 
-            if (headCount >= 21)
+            if (headCount >= MARGIN)
             {
-                Console.WriteLine($"head won by {headCount - tailCount}");
+                difference = headCount - tailCount;
+                Console.WriteLine($"head won by {difference}");
             }
-            else if (tailCount >= 21)
+            else if (tailCount >= MARGIN)
             {
-                Console.WriteLine($"tail won by {tailCount - headCount}");
+                difference = tailCount - headCount;
+                Console.WriteLine($"tail won by {difference}");
 
             }
             else if (headCount == tailCount)
@@ -66,7 +80,63 @@ namespace flipCoin
             }
 
 
+            return difference;
+        }
+
+
+        public static int TieCondition(int MARGIN)
+        {
+            //constant
+            const int HEAD = 0;
+            const int TAIL = 1;
+
+            //initilization and declaration
+            int headCount = 0;
+            int tailCount = 0;
+            int difference = 0;
+
+
+
+            while (difference < 2)
+            {
+
+                Random random = new Random();
+                int flipResult = random.Next(0, 2);
+                if (flipResult == HEAD)
+                {
+                    headCount++;
+
+                }
+                else if (flipResult == TAIL)
+                {
+                    tailCount++;
+
+
+                }
+
+                if (headCount >= MARGIN)
+                {
+                    difference = headCount - tailCount;
+                    //Console.WriteLine($"head won by {difference}");
+                }
+                else if (tailCount >= MARGIN)
+                {
+                    difference = tailCount - headCount;
+                    //Console.WriteLine($"tail won by {difference}");
+                }
+
+
+
+
+            }
+            Console.WriteLine($"Head {headCount}");
+
+            Console.WriteLine($"Tail {tailCount}");
+
+
+
             return 0;
         }
+
     }
 }
