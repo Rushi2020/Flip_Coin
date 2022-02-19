@@ -1,6 +1,4 @@
 ﻿// Flip Coin and Display Winner
-
-
 using System;
 
 namespace flipCoin
@@ -12,14 +10,11 @@ namespace flipCoin
             Console.WriteLine("flip coin simulator");
             FlipCoin();
         }
-
-
         public static int FlipCoin()
         {
             //constant
             const int HEAD = 0;
             const int TAIL = 1;
-
 
             Random random = new Random();
             int flipResult = random.Next(0, 2);
@@ -30,10 +25,7 @@ namespace flipCoin
             else if (flipResult == TAIL)
             {
                 Console.WriteLine("Winner is Tail");
-
             }
-
-
             return 0;
         }
     }
